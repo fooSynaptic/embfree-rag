@@ -14,6 +14,8 @@ This project is **RAG without mandatory neural embeddings**:
 
 Neural embedding models are **optional adapters**, not core dependencies.
 
+![EmbFree RAG overview](embfree-rag-overview.svg)
+
 ## Pipeline
 
 ```text

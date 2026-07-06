@@ -8,6 +8,12 @@
 
 Repository: [github.com/fooSynaptic/embfree-rag](https://github.com/fooSynaptic/embfree-rag)
 
+<p align="center">
+  <img src="docs/embfree-rag-overview.svg" alt="EmbFree RAG pipeline and project structure" width="920"/>
+</p>
+
+<p align="center"><em>Left: emb-free RAG pipeline · Right: repository modules mapped to each stage</em></p>
+
 ## Why emb-free?
 
 | | Emb-free (default) | Neural embedding RAG |
@@ -53,16 +59,9 @@ print(result.metrics)
 
 ## Architecture
 
-```text
-Passage + Question
-   -> sentence chunks
-   -> TF-IDF index
-   -> NMF topic routing
-   -> lexical retrieval (+ optional neural rerank)
-   -> extractive answer with citations
-```
+![EmbFree RAG overview](embfree-rag-overview.svg)
 
-Details: [docs/architecture.md](docs/architecture.md)
+Details: [architecture.md](architecture.md)
 
 ## Project structure
 
