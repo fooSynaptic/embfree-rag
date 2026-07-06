@@ -8,9 +8,7 @@
 
 Repository: [github.com/fooSynaptic/embfree-rag](https://github.com/fooSynaptic/embfree-rag)
 
-<div align="center">
-<img src="docs/embfree-rag-overview.svg" alt="EmbFree RAG pipeline and project structure" width="920"/>
-</div>
+![EmbFree RAG pipeline and project structure](https://github.com/fooSynaptic/embfree-rag/raw/master/docs/embfree-rag-overview.svg)
 
 <p align="center"><em>Left: emb-free RAG pipeline · Right: repository modules mapped to each stage</em></p>
 
