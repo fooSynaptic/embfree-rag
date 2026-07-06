@@ -8,9 +8,9 @@
 
 Repository: [github.com/fooSynaptic/embfree-rag](https://github.com/fooSynaptic/embfree-rag)
 
-<p align="center">
-  <img src="docs/embfree-rag-overview.svg" alt="EmbFree RAG pipeline and project structure" width="920"/>
-</p>
+<div align="center">
+  <img src="docs/embfree-rag-overview.png" alt="EmbFree RAG pipeline and project structure" width="920"/>
+</div>
 
 <p align="center"><em>Left: emb-free RAG pipeline · Right: repository modules mapped to each stage</em></p>
 
@@ -59,7 +59,7 @@ print(result.metrics)
 
 ## Architecture
 
-![EmbFree RAG overview](embfree-rag-overview.svg)
+![EmbFree RAG overview](docs/embfree-rag-overview.png)
 
 Details: [architecture.md](architecture.md)
 
