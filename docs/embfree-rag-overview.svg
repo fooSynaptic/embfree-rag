@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
   <title id="title">EmbFree RAG architecture and project structure</title>
   <desc id="desc">Diagram showing the emb-free RAG pipeline and how repository modules map to each stage.</desc>
@@ -29,18 +30,15 @@
   <text x="48" y="58" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24" font-weight="700">EmbFree RAG</text>
   <text x="220" y="58" fill="#dbeafe" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16">TF-IDF + Topic Routing + Extractive Retrieval</text>
 
-  <!-- Legend -->
   <rect x="650" y="38" width="14" height="14" rx="3" fill="#1a7f37"/>
   <text x="670" y="50" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">emb-free default</text>
   <rect x="780" y="38" width="14" height="14" rx="3" fill="#bf8700"/>
   <text x="800" y="50" fill="#ffffff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">optional</text>
 
-  <!-- Left panel: pipeline -->
   <rect x="24" y="96" width="430" height="520" rx="14" fill="url(#pipelineGrad)" stroke="#c8ddf7"/>
   <text x="48" y="128" fill="#0969da" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="700">RAG Pipeline</text>
   <text x="48" y="150" fill="#57606a" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Query-driven retrieval without mandatory neural embeddings</text>
 
-  <!-- Input -->
   <g filter="url(#shadow)">
     <rect x="84" y="172" width="310" height="52" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
     <text x="104" y="195" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Input</text>
@@ -49,23 +47,20 @@
 
   <line x1="239" y1="224" x2="239" y2="244" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <!-- Step 1 -->
   <g filter="url(#shadow)">
     <rect x="84" y="248" width="310" height="58" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
     <text x="104" y="271" fill="#1a7f37" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700">1. CHUNK</text>
-    <text x="104" y="290" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Sentence split â jieba tokenize</text>
+    <text x="104" y="290" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Sentence split -&gt; jieba tokenize</text>
   </g>
   <line x1="239" y1="306" x2="239" y2="326" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <!-- Step 2 -->
   <g filter="url(#shadow)">
     <rect x="84" y="330" width="310" height="58" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
     <text x="104" y="353" fill="#1a7f37" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700">2. INDEX</text>
-    <text x="104" y="372" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">TF-IDF matrix â NMF / LDA topics</text>
+    <text x="104" y="372" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">TF-IDF matrix -&gt; NMF / LDA topics</text>
   </g>
   <line x1="239" y1="388" x2="239" y2="408" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <!-- Step 3 -->
   <g filter="url(#shadow)">
     <rect x="84" y="412" width="310" height="72" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
     <text x="104" y="435" fill="#1a7f37" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700">3. RETRIEVE</text>
@@ -74,85 +69,79 @@
   </g>
   <line x1="239" y1="484" x2="239" y2="504" stroke="#57606a" stroke-width="2" marker-end="url(#arrow)"/>
 
-  <!-- Step 4 -->
   <g filter="url(#shadow)">
     <rect x="84" y="508" width="310" height="58" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
     <text x="104" y="531" fill="#1a7f37" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700">4. GENERATE</text>
     <text x="104" y="550" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Extractive answer + citations</text>
   </g>
 
-  <!-- Score formula -->
   <rect x="48" y="582" width="382" height="24" rx="6" fill="#fff8c5" stroke="#d4a72c"/>
   <text x="60" y="598" fill="#7d4e00" font-family="Consolas, monospace" font-size="11">score = (1-b)*lexical + b*topic [+ optional neural]</text>
 
-  <!-- Right panel: structure -->
   <rect x="506" y="96" width="430" height="520" rx="14" fill="url(#structureGrad)" stroke="#b7e4c7"/>
   <text x="530" y="128" fill="#1a7f37" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18" font-weight="700">Project Structure</text>
   <text x="530" y="150" fill="#57606a" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Modules mapped to pipeline stages</text>
 
-  <!-- Tree -->
   <text x="530" y="182" fill="#24292f" font-family="Consolas, monospace" font-size="14" font-weight="700">embfree-rag/</text>
 
   <g font-family="Consolas, monospace" font-size="12">
-    <text x="550" y="210" fill="#57606a"></text>
+    <text x="550" y="210" fill="#57606a">|-- </text>
     <text x="580" y="210" fill="#24292f">src/rag.py</text>
-    <text x="720" y="210" fill="#0969da">â orchestrator</text>
+    <text x="720" y="210" fill="#0969da">-&gt; orchestrator</text>
 
-    <text x="550" y="236" fill="#57606a"></text>
+    <text x="550" y="236" fill="#57606a">|-- </text>
     <text x="580" y="236" fill="#24292f">src/preprocessing.py</text>
-    <text x="760" y="236" fill="#0969da">â chunk</text>
+    <text x="760" y="236" fill="#0969da">-&gt; chunk</text>
 
-    <text x="550" y="262" fill="#57606a"></text>
+    <text x="550" y="262" fill="#57606a">|-- </text>
     <text x="580" y="262" fill="#24292f">src/index.py</text>
-    <text x="720" y="262" fill="#0969da">â index</text>
+    <text x="720" y="262" fill="#0969da">-&gt; index</text>
 
-    <text x="550" y="288" fill="#57606a"></text>
+    <text x="550" y="288" fill="#57606a">|-- </text>
     <text x="580" y="288" fill="#24292f">src/topic_model.py</text>
-    <text x="760" y="288" fill="#0969da">â NMF/LDA</text>
+    <text x="760" y="288" fill="#0969da">-&gt; NMF/LDA</text>
 
-    <text x="550" y="314" fill="#57606a"></text>
+    <text x="550" y="314" fill="#57606a">|-- </text>
     <text x="580" y="314" fill="#24292f">src/retrieval.py</text>
-    <text x="740" y="314" fill="#0969da">â retrieve</text>
+    <text x="740" y="314" fill="#0969da">-&gt; retrieve</text>
 
-    <text x="550" y="340" fill="#57606a"></text>
+    <text x="550" y="340" fill="#57606a">|-- </text>
     <text x="580" y="340" fill="#24292f">src/synthesizer.py</text>
-    <text x="740" y="340" fill="#0969da">â generate</text>
+    <text x="740" y="340" fill="#0969da">-&gt; generate</text>
 
-    <text x="550" y="366" fill="#57606a"></text>
+    <text x="550" y="366" fill="#57606a">|-- </text>
     <text x="580" y="366" fill="#24292f">src/embeddings/</text>
-    <text x="720" y="366" fill="#bf8700">â optional</text>
+    <text x="720" y="366" fill="#bf8700">-&gt; optional</text>
 
-    <text x="570" y="392" fill="#57606a">   </text>
+    <text x="570" y="392" fill="#57606a">|   |-- </text>
     <text x="610" y="392" fill="#1a7f37">lexical.py</text>
     <text x="710" y="392" fill="#57606a">default</text>
 
-    <text x="570" y="418" fill="#57606a">   </text>
+    <text x="570" y="418" fill="#57606a">|   `-- </text>
     <text x="610" y="418" fill="#bf8700">sentence_transformer.py</text>
 
-    <text x="550" y="450" fill="#57606a"></text>
+    <text x="550" y="450" fill="#57606a">|-- </text>
     <text x="580" y="450" fill="#24292f">src/server/app.py</text>
     <text x="740" y="450" fill="#57606a">Flask API</text>
 
-    <text x="550" y="476" fill="#57606a"></text>
+    <text x="550" y="476" fill="#57606a">|-- </text>
     <text x="580" y="476" fill="#24292f">run_server.py</text>
     <text x="720" y="476" fill="#57606a">web entry</text>
 
-    <text x="550" y="502" fill="#57606a"></text>
+    <text x="550" y="502" fill="#57606a">|-- </text>
     <text x="580" y="502" fill="#24292f">examples/demo_rag.py</text>
     <text x="760" y="502" fill="#57606a">CLI demo</text>
 
-    <text x="550" y="528" fill="#57606a"></text>
+    <text x="550" y="528" fill="#57606a">`-- </text>
     <text x="580" y="528" fill="#24292f">data/sample_passage.txt</text>
   </g>
 
-  <!-- Mapping arrows from structure to pipeline -->
   <path d="M506 260 C470 260 470 277 454 277" fill="none" stroke="#54aeff" stroke-width="1.5" stroke-dasharray="5 4"/>
   <path d="M506 344 C470 344 470 361 454 361" fill="none" stroke="#54aeff" stroke-width="1.5" stroke-dasharray="5 4"/>
   <path d="M506 446 C470 446 470 448 454 448" fill="none" stroke="#54aeff" stroke-width="1.5" stroke-dasharray="5 4"/>
   <path d="M506 536 C470 536 470 534 454 534" fill="none" stroke="#54aeff" stroke-width="1.5" stroke-dasharray="5 4"/>
 
-  <!-- Entry points box -->
   <rect x="530" y="560" width="382" height="44" rx="10" fill="#ffffff" stroke="#d0d7de"/>
   <text x="548" y="582" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="600">Entry points</text>
-  <text x="548" y="598" fill="#57606a" font-family="Consolas, monospace" font-size="11">EmbFreeRAG().query() â POST /answer â demo_rag.py</text>
+  <text x="548" y="598" fill="#57606a" font-family="Consolas, monospace" font-size="11">EmbFreeRAG().query() -&gt; POST /answer -&gt; demo_rag.py</text>
 </svg>
