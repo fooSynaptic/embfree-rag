@@ -6,8 +6,6 @@
 
 **Emb-free Retrieval-Augmented Generation for Chinese text** — built on TF-IDF, matrix topic decomposition (NMF/LDA), and extractive answer synthesis.
 
-Formerly [text-Paraphrasing](https://github.com/fooSynaptic/text-Paraphrasing). The old project only clustered sentences by topic; this version adds a real **query → retrieve → answer** RAG loop **without requiring neural embeddings**.
-
 Repository: [github.com/fooSynaptic/embfree-rag](https://github.com/fooSynaptic/embfree-rag)
 
 ## Why emb-free?
@@ -17,7 +15,7 @@ Repository: [github.com/fooSynaptic/embfree-rag](https://github.com/fooSynaptic/
 | Dependencies | scikit-learn + jieba | + torch + sentence-transformers |
 | Hardware | CPU | GPU recommended |
 | Interpretability | topic keywords + TF-IDF scores | dense vectors |
-| Best for | ASR transcripts, broadcasts, dialogue logs | semantic paraphrase queries |
+| Best for | ASR transcripts, broadcasts, dialogue logs | semantic similarity queries |
 
 Open-source embedding models are supported as an **optional adapter**, not a hard requirement.
 
@@ -71,12 +69,12 @@ Details: [docs/architecture.md](docs/architecture.md)
 ```text
 embfree-rag/
 ├── src/
-│   ├── index.py           # TF-IDF + topic index
-│   ├── retrieval.py       # hybrid retriever
-│   ├── rag.py             # EmbFreeRAG pipeline
-│   ├── synthesizer.py     # extractive answer builder
-│   ├── topic_model.py     # NMF / LDA
-│   └── embeddings/        # lexical (default) + optional ST
+│   ├── index.py
+│   ├── retrieval.py
+│   ├── rag.py
+│   ├── synthesizer.py
+│   ├── topic_model.py
+│   └── embeddings/
 ├── examples/demo_rag.py
 ├── run_server.py
 ├── data/sample_passage.txt
@@ -94,30 +92,19 @@ from src.config import embedding_config
 from src.rag import EmbFreeRAG
 
 embedding_config.backend = "sentence-transformers"
-embedding_config.model_name = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
-embedding_config.hybrid_alpha = 0.7  # lexical weight
+embedding_config.model_name = "BAAI/bge-small-zh-v1.5"
+embedding_config.hybrid_alpha = 0.7
 
 pipeline = EmbFreeRAG()
 ```
 
-## API
+## HTTP API
 
 ```bash
 curl -X POST http://127.0.0.1:5000/answer \
   -H "Content-Type: application/json" \
   -d '{"passage":"...", "question":"..."}'
 ```
-
-## Migration from text-Paraphrasing
-
-| Old behavior | New behavior |
-|--------------|--------------|
-| Topic word list only | Topic routing + query retrieval |
-| No question support | Question-driven RAG |
-| Confusing "re-paraphrased" blocks | Ordered citations + extractive answer |
-| `paraphrase(text)` | `EmbFreeRAG().query(passage, question)` |
-
-Legacy shim: `re_paraphrasing.paraphrase()` still works.
 
 ## License
 

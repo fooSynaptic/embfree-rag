@@ -52,8 +52,8 @@ class EmbFreeRAG:
         )
 
 
-def ask(passage: str, question: str, **kwargs) -> str:
-    """Convenience API compatible with old paraphrase() style."""
-    pipeline = EmbFreeRAG(**kwargs) if kwargs else EmbFreeRAG()
+def ask(passage: str, question: str) -> str:
+    """Run emb-free RAG and return a formatted response string."""
+    pipeline = EmbFreeRAG()
     result = pipeline.query(passage, question)
     return pipeline.format_response(result)

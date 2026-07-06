@@ -54,11 +54,3 @@ embedding_config.backend = "sentence-transformers"
 ```
 
 Then retrieval becomes a hybrid of lexical + neural scores.
-
-## Migration from text-Paraphrasing
-
-| Old | New |
-|-----|-----|
-| topic clustering only | topic routing + query retrieval |
-| `paraphrase(text)` | `ask(passage, question)` |
-| confusing "re-paraphrased" output | citation-aware extractive answer |

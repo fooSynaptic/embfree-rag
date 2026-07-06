@@ -35,7 +35,7 @@ class EmbeddingConfig:
     """Optional neural embedding backend (disabled by default)."""
 
     backend: str = "lexical"
-    model_name: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    model_name: str = "BAAI/bge-small-zh-v1.5"
     hybrid_alpha: float = 0.7
 
 
