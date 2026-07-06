@@ -1,48 +1,44 @@
-<!DOCTYPE html> 
-<html>
-    <head>
-        <meta charset="UTF-8"> 
-        <script>
-            function hit(passage, question){
-                var xhr = new XMLHttpRequest();
-                xhr.open("POST", '/answer', true);
-                xhr.setRequestHeader("Content-type", "application/json");
-                xhr.onreadystatechange = function () {
-                    console.log(xhr.status);
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        var json = JSON.parse(xhr.responseText);
-                        console.log(json.answer);
-                        var ans = document.getElementById("answer");
-                        ans.innerHTML = json.answer;
-                    }
-                };
-                var params = JSON.stringify({"question": question, "passage": passage});
-                xhr.send(params);
-                console.log("sent");
-            }
-        </script>
-        <style>
-            body{
-                display: grid;
-                grid-template-columns: 7fr 3fr;
-                grid-template-rows: 9fr 1fr;
-            }
-        </style>
-    </head>
-    <body>
-        <textarea id='passage' placeholder='Your passage here'></textarea>
-        <textarea id='question' placeholder='Your Question here'></textarea>
-        <p id='answer'>Your answer appears here</p>
-        <button id='GetAnswer'>Get Answer</button>
-        <script>
-            var button = document.getElementById("GetAnswer");
-            button.onclick = function (){
-                var para = document.getElementById("passage");
-                var ques = document.getElementById("question");
-                console.log("hitting");
-                hit(para.value, ques.value);
-            };
-        </script>
-    </body>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>EmbFree RAG</title>
+  <style>
+    body { font-family: sans-serif; max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    textarea { width: 100%; min-height: 160px; margin-bottom: 1rem; }
+    pre { background: #f6f8fa; padding: 1rem; white-space: pre-wrap; word-break: break-word; }
+    button { padding: 0.6rem 1.2rem; }
+  </style>
+</head>
+<body>
+  <h1>EmbFree RAG Demo</h1>
+  <p>默认使用 TF-IDF + 主题路由，无需 neural embedding。</p>
+  <label>Passage</label>
+  <textarea id="passage" placeholder="粘贴长文本或对话转写"></textarea>
+  <label>Question</label>
+  <textarea id="question" placeholder="你的问题，例如：这段内容主要在讨论什么？"></textarea>
+  <button id="GetAnswer">Retrieve & Answer</button>
+  <h2>Answer</h2>
+  <pre id="answer">结果会显示在这里</pre>
+  <h2>Retrieved Context</h2>
+  <pre id="context"></pre>
+  <script>
+    document.getElementById("GetAnswer").onclick = function () {
+      const xhr = new XMLHttpRequest();
+      xhr.open("POST", "/answer", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          const json = JSON.parse(xhr.responseText);
+          document.getElementById("answer").textContent = json.answer || "";
+          document.getElementById("context").textContent = json.context || "";
+        }
+      };
+      xhr.send(JSON.stringify({
+        passage: document.getElementById("passage").value,
+        question: document.getElementById("question").value
+      }));
+    };
+  </script>
+</body>
 </html>
-
